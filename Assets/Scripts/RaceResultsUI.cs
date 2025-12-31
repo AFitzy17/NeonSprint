@@ -15,6 +15,7 @@ public class RaceResultsUI : MonoBehaviour
     public TMP_Text finishText;
     public TMP_Text finalPositionText;
     public TMP_Text restartText;
+    public TMP_Text quitText;
 
     bool resultsShown;
 
@@ -36,9 +37,17 @@ public class RaceResultsUI : MonoBehaviour
             ShowResults();
         }
 
-        if (resultsShown && Input.GetKeyDown(KeyCode.R))
+        if (resultsShown)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            }
+
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                SceneManager.LoadScene("MainMenu");
+            }
         }
     }
 
@@ -73,5 +82,8 @@ public class RaceResultsUI : MonoBehaviour
 
         if (restartText != null)
             restartText.text = "Press R to Restart";
+
+        if (quitText != null)
+            quitText.text = "Press Esc to Quit";
     }
 }
