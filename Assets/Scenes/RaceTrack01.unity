@@ -7357,6 +7357,7 @@ GameObject:
   m_Component:
   - component: {fileID: 554094417}
   - component: {fileID: 554094418}
+  - component: {fileID: 554094419}
   m_Layer: 0
   m_Name: Checkpoint_3
   m_TagString: Untagged
@@ -7400,6 +7401,20 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 18, y: 4, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &554094419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 554094416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f50e81a683fa0074a8fb7f4d3ba21ec4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CheckpointTrigger
+  checkpointNumber: 3
+  lapManager: {fileID: 1450535830}
 --- !u!1 &554149535 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1000013051442408, guid: 377c57e9ef0ee0e46a586ad087ef386b, type: 3}
@@ -13859,6 +13874,7 @@ GameObject:
   m_Component:
   - component: {fileID: 907598249}
   - component: {fileID: 907598250}
+  - component: {fileID: 907598251}
   m_Layer: 0
   m_Name: Checkpoint_1
   m_TagString: Untagged
@@ -13902,6 +13918,20 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 18, y: 4, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &907598251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 907598248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f50e81a683fa0074a8fb7f4d3ba21ec4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CheckpointTrigger
+  checkpointNumber: 1
+  lapManager: {fileID: 1450535830}
 --- !u!1001 &908069018
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15222,6 +15252,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1056398505}
   - component: {fileID: 1056398506}
+  - component: {fileID: 1056398507}
   m_Layer: 0
   m_Name: Checkpoint_2
   m_TagString: Untagged
@@ -15265,6 +15296,20 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 18, y: 4, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1056398507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1056398504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f50e81a683fa0074a8fb7f4d3ba21ec4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CheckpointTrigger
+  checkpointNumber: 2
+  lapManager: {fileID: 1450535830}
 --- !u!1001 &1058040440
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22285,6 +22330,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1450535829}
+  - component: {fileID: 1450535830}
   m_Layer: 0
   m_Name: LapManager
   m_TagString: Untagged
@@ -22307,6 +22353,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1502227884}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1450535830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1450535828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbaff1a924666784382beea97f7be225, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LapManager
+  totalLaps: 3
+  currentLap: 0
 --- !u!1 &1451690087 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1000013051442408, guid: 377c57e9ef0ee0e46a586ad087ef386b, type: 3}
@@ -22505,7 +22565,7 @@ GameObject:
   - component: {fileID: 1490752019}
   m_Layer: 0
   m_Name: PlayerCar
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27284,6 +27344,20 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 1176110156372327223, guid: cf81cf68cbae06344b40c17009999a59, type: 3}
+--- !u!114 &1824164590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1824164584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f50e81a683fa0074a8fb7f4d3ba21ec4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CheckpointTrigger
+  checkpointNumber: 0
+  lapManager: {fileID: 1450535830}
 --- !u!1 &1826304187 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1000010294539876, guid: 377c57e9ef0ee0e46a586ad087ef386b, type: 3}
@@ -32476,6 +32550,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4136846331614783526, guid: cea199888b995854c8b3490c1435a01e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1824164589}
+    - targetCorrespondingSourceObject: {fileID: 4136846331614783526, guid: cea199888b995854c8b3490c1435a01e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1824164590}
   m_SourcePrefab: {fileID: 100100000, guid: cea199888b995854c8b3490c1435a01e, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
