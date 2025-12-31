@@ -1531,6 +1531,7 @@ GameObject:
   - component: {fileID: 99924585}
   - component: {fileID: 99924584}
   - component: {fileID: 99924583}
+  - component: {fileID: 99924587}
   m_Layer: 0
   m_Name: AICar02
   m_TagString: Untagged
@@ -1756,6 +1757,22 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 80
   m_CollisionDetection: 1
+--- !u!114 &99924587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 99924581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 495d8aec9bd564c4db98ed77194df4c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RacerProgress
+  totalLaps: 3
+  currentLap: 0
+  nextCheckpoint: 1
+  raceFinished: 0
 --- !u!1 &101149430
 GameObject:
   m_ObjectHideFlags: 0
@@ -7498,6 +7515,59 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &405835482
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 405835483}
+  - component: {fileID: 405835484}
+  m_Layer: 0
+  m_Name: RacePositionManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &405835483
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 405835482}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1502227884}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &405835484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 405835482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8b33aa1fe08d3941a123ecfa522a1c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RacePositionManager
+  racers:
+  - {fileID: 919132147882880147}
+  - {fileID: 890361434}
+  - {fileID: 99924587}
+  - {fileID: 1637203636}
+  checkpoint1: {fileID: 907598249}
+  checkpoint2: {fileID: 1056398505}
+  checkpoint3: {fileID: 554094417}
+  startFinish: {fileID: 1824164587}
 --- !u!1001 &407310209
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9744,7 +9814,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CheckpointTrigger
   checkpointNumber: 3
-  lapManager: {fileID: 1450535830}
 --- !u!1 &554149535 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1000013051442408, guid: 377c57e9ef0ee0e46a586ad087ef386b, type: 3}
@@ -17467,6 +17536,7 @@ GameObject:
   - component: {fileID: 890361431}
   - component: {fileID: 890361430}
   - component: {fileID: 890361433}
+  - component: {fileID: 890361434}
   m_Layer: 0
   m_Name: AICar01
   m_TagString: Untagged
@@ -17692,6 +17762,22 @@ MonoBehaviour:
   offTrackTimeThreshold: 2.5
   recoveryHeightOffset: 1
   recoveryCooldown: 3
+--- !u!114 &890361434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 890361428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 495d8aec9bd564c4db98ed77194df4c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RacerProgress
+  totalLaps: 3
+  currentLap: 0
+  nextCheckpoint: 1
+  raceFinished: 0
 --- !u!1 &904375024
 GameObject:
   m_ObjectHideFlags: 0
@@ -18056,7 +18142,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CheckpointTrigger
   checkpointNumber: 1
-  lapManager: {fileID: 1450535830}
 --- !u!1001 &908069018
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19924,7 +20009,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CheckpointTrigger
   checkpointNumber: 2
-  lapManager: {fileID: 1450535830}
 --- !u!1001 &1058040440
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28563,12 +28647,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RaceHUD
   playerCar: {fileID: 919132147882880145}
-  lapManager: {fileID: 1450535830}
+  playerProgress: {fileID: 919132147882880147}
+  positionManager: {fileID: 405835484}
   speedText: {fileID: 1821961787}
   lapText: {fileID: 2140425437}
   positionText: {fileID: 1126541780}
-  currentPosition: 1
-  totalRacers: 4
 --- !u!1 &1455474903 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1000013051442408, guid: 377c57e9ef0ee0e46a586ad087ef386b, type: 3}
@@ -29373,6 +29456,7 @@ Transform:
   - {fileID: 1450535829}
   - {fileID: 1405619664}
   - {fileID: 1454197802}
+  - {fileID: 405835483}
   m_Father: {fileID: 106507038}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1505077065 stripped
@@ -31881,6 +31965,7 @@ GameObject:
   - component: {fileID: 1637203634}
   - component: {fileID: 1637203633}
   - component: {fileID: 1637203632}
+  - component: {fileID: 1637203636}
   m_Layer: 0
   m_Name: AICar03
   m_TagString: Untagged
@@ -32106,6 +32191,22 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 80
   m_CollisionDetection: 1
+--- !u!114 &1637203636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1637203630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 495d8aec9bd564c4db98ed77194df4c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RacerProgress
+  totalLaps: 3
+  currentLap: 0
+  nextCheckpoint: 1
+  raceFinished: 0
 --- !u!1 &1641648925 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1000013051442408, guid: 377c57e9ef0ee0e46a586ad087ef386b, type: 3}
@@ -35741,7 +35842,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CheckpointTrigger
   checkpointNumber: 0
-  lapManager: {fileID: 1450535830}
 --- !u!1 &1826304187 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1000010294539876, guid: 377c57e9ef0ee0e46a586ad087ef386b, type: 3}
@@ -42793,6 +42893,7 @@ GameObject:
   - component: {fileID: 919132147882880144}
   - component: {fileID: 919132147882880145}
   - component: {fileID: 919132147882880146}
+  - component: {fileID: 919132147882880147}
   m_Layer: 0
   m_Name: PlayerCar
   m_TagString: Player
@@ -42903,6 +43004,22 @@ MonoBehaviour:
     rearLeftWheel: {fileID: 1997567318375530865}
     rearRightWheel: {fileID: 3398984068445380583}
   currentIndex: 0
+--- !u!114 &919132147882880147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132147882880143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 495d8aec9bd564c4db98ed77194df4c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RacerProgress
+  totalLaps: 3
+  currentLap: 0
+  nextCheckpoint: 1
+  raceFinished: 0
 --- !u!1 &919132147952821581
 GameObject:
   m_ObjectHideFlags: 0

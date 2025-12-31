@@ -3,24 +3,22 @@ using UnityEngine;
 public class CheckpointTrigger : MonoBehaviour
 {
     public int checkpointNumber = 0;
-    public LapManager lapManager;
 
-    private void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider other)
     {
         Rigidbody hitBody = other.attachedRigidbody;
-
         if (hitBody == null) return;
-        if (!hitBody.CompareTag("Player")) return;
 
-        Debug.Log("Player entered trigger: " + gameObject.name);
+        RacerProgress racer = hitBody.GetComponent<RacerProgress>();
+        if (racer == null) return;
 
         if (checkpointNumber == 0)
         {
-            lapManager.CrossStartFinish();
+            racer.CrossStartFinish();
         }
         else
         {
-            lapManager.PassCheckpoint(checkpointNumber);
+            racer.PassCheckpoint(checkpointNumber);
         }
     }
 }

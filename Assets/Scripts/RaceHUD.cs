@@ -4,14 +4,12 @@ using UnityEngine;
 public class RaceHUD : MonoBehaviour
 {
     public CarController playerCar;
-    public LapManager lapManager;
+    public RacerProgress playerProgress;
+    public RacePositionManager positionManager;
 
     public TMP_Text speedText;
     public TMP_Text lapText;
     public TMP_Text positionText;
-
-    public int currentPosition = 1;
-    public int totalRacers = 4;
 
     void Update()
     {
@@ -20,24 +18,22 @@ public class RaceHUD : MonoBehaviour
             speedText.text = "Speed: " + Mathf.RoundToInt(playerCar.SpeedKph);
         }
 
-        if (lapManager != null && lapText != null)
+        if (playerProgress != null && lapText != null)
         {
-            int displayLap = Mathf.Clamp(lapManager.CurrentLap + 1, 1, lapManager.TotalLaps);
-            if (lapManager.RaceFinished)
-                displayLap = lapManager.TotalLaps;
+            int displayLap = Mathf.Clamp(playerProgress.currentLap + 1, 1, playerProgress.totalLaps);
+            if (playerProgress.raceFinished)
+            {
+                displayLap = playerProgress.totalLaps;
+            }
 
-            lapText.text = "Lap: " + displayLap + "/" + lapManager.TotalLaps;
+            lapText.text = "Lap: " + displayLap + "/" + playerProgress.totalLaps;
         }
 
-        if (positionText != null)
+        if (playerProgress != null && positionManager != null && positionText != null)
         {
-            positionText.text = "Pos: " + currentPosition + "/" + totalRacers;
+            int position = positionManager.GetPosition(playerProgress);
+            int racerCount = positionManager.GetRacerCount();
+            positionText.text = "Pos: " + position + "/" + racerCount;
         }
-    }
-
-    public void SetPosition(int newPosition, int racerCount)
-    {
-        currentPosition = newPosition;
-        totalRacers = racerCount;
     }
 }
