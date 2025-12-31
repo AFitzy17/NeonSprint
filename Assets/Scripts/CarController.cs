@@ -159,4 +159,12 @@ public class CarController : MonoBehaviour
         frontLeftWheel.localRotation = Quaternion.Euler(frontLeftWheel.localEulerAngles.x + rotationAmount, steerVisual, 0f);
         frontRightWheel.localRotation = Quaternion.Euler(frontRightWheel.localEulerAngles.x + rotationAmount, steerVisual, 0f);
     }
+
+    public void SetWheelVisuals(Transform fl, Transform fr, Transform rl, Transform rr)
+    {
+        frontLeftWheel = fl;
+        frontRightWheel = fr;
+        rearLeftWheel = rl;
+        rearRightWheel = rr;
+    }
 }
