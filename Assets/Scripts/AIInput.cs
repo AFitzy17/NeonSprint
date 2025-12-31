@@ -7,7 +7,7 @@ public class AIInput : MonoBehaviour
     public float waypointReachDistance = 3f;
     public float lookAheadDistance = 9f;
     public float passedWaypointDotThreshold = -0.2f;
-
+    public bool canDrive = true;
     public float steerStrength = 1.35f;
     public float brakeLookAheadMultiplier = 1.9f;
 
@@ -48,6 +48,12 @@ public class AIInput : MonoBehaviour
 
     void Update()
     {
+        if (!canDrive)
+        {
+            car.SetInputs(0f, 0f, 1f, false);
+            return;
+        }
+
         if (recoveryCooldownTimer > 0f)
             recoveryCooldownTimer -= Time.deltaTime;
 

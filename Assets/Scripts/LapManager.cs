@@ -5,8 +5,13 @@ public class LapManager : MonoBehaviour
     public int totalLaps = 3;
     public int currentLap = 0;
 
-    private int nextCheckpoint = 1;
-    private bool raceFinished = false;
+    int nextCheckpoint = 1;
+    bool raceFinished = false;
+
+    public int CurrentLap => currentLap;
+    public int TotalLaps => totalLaps;
+    public int NextCheckpoint => nextCheckpoint;
+    public bool RaceFinished => raceFinished;
 
     public void PassCheckpoint(int checkpointNumber)
     {

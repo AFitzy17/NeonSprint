@@ -3,6 +3,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class CarController : MonoBehaviour
 {
+    public bool canDrive = true;
     public Transform frontLeftWheel;
     public Transform frontRightWheel;
     public Transform rearLeftWheel;
@@ -69,32 +70,42 @@ public class CarController : MonoBehaviour
     {
         if (usePlayerInput)
         {
-            float vertical = Input.GetAxisRaw("Vertical");
-            steerInput = Input.GetAxisRaw("Horizontal");
-            handbrakeInput = Input.GetKey(KeyCode.Space);
+            if (canDrive)
+            {
+                float vertical = Input.GetAxisRaw("Vertical");
+                steerInput = Input.GetAxisRaw("Horizontal");
+                handbrakeInput = Input.GetKey(KeyCode.Space);
 
-            if (vertical > 0f)
-            {
-                throttleInput = 1f;
-                brakeInput = 0f;
-            }
-            else if (vertical < 0f)
-            {
-                if (ForwardSpeed > 1f)
+                if (vertical > 0f)
                 {
-                    throttleInput = 0f;
-                    brakeInput = 1f;
+                    throttleInput = 1f;
+                    brakeInput = 0f;
+                }
+                else if (vertical < 0f)
+                {
+                    if (ForwardSpeed > 1f)
+                    {
+                        throttleInput = 0f;
+                        brakeInput = 1f;
+                    }
+                    else
+                    {
+                        throttleInput = -1f;
+                        brakeInput = 0f;
+                    }
                 }
                 else
                 {
-                    throttleInput = -1f;
+                    throttleInput = 0f;
                     brakeInput = 0f;
                 }
             }
             else
             {
                 throttleInput = 0f;
-                brakeInput = 0f;
+                steerInput = 0f;
+                brakeInput = 1f;
+                handbrakeInput = false;
             }
         }
 
