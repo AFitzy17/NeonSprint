@@ -21,6 +21,8 @@ public class CarController : MonoBehaviour
 
     public float throttleSharpness = 6f;
     public float steerSharpness = 5f;
+    public float brakeSharpness = 6f;
+
     public float lateralGrip = 5.5f;
     public float driftGrip = 3.5f;
     public float handbrakeGrip = 1.6f;
@@ -35,14 +37,19 @@ public class CarController : MonoBehaviour
     public float wheelRadius = 0.4f;
     public Vector3 centerOfMassOffset = new Vector3(0f, -0.55f, 0f);
 
+    public bool usePlayerInput = true;
+
     float throttleInput;
     float steerInput;
+    float brakeInput;
+    bool handbrakeInput;
+
     float currentThrottle;
     float currentSteer;
+    float currentBrake;
     float currentGrip;
     float currentYawBoost = 1f;
     float currentHandbrakeBrake;
-    bool handbrakeInput;
 
     Rigidbody rb;
 
@@ -60,9 +67,37 @@ public class CarController : MonoBehaviour
 
     void Update()
     {
-        throttleInput = Input.GetAxisRaw("Vertical");
-        steerInput = Input.GetAxisRaw("Horizontal");
-        handbrakeInput = Input.GetKey(KeyCode.Space);
+        if (usePlayerInput)
+        {
+            float vertical = Input.GetAxisRaw("Vertical");
+            steerInput = Input.GetAxisRaw("Horizontal");
+            handbrakeInput = Input.GetKey(KeyCode.Space);
+
+            if (vertical > 0f)
+            {
+                throttleInput = 1f;
+                brakeInput = 0f;
+            }
+            else if (vertical < 0f)
+            {
+                if (ForwardSpeed > 1f)
+                {
+                    throttleInput = 0f;
+                    brakeInput = 1f;
+                }
+                else
+                {
+                    throttleInput = -1f;
+                    brakeInput = 0f;
+                }
+            }
+            else
+            {
+                throttleInput = 0f;
+                brakeInput = 0f;
+            }
+        }
+
         AnimateWheels();
     }
 
@@ -70,6 +105,7 @@ public class CarController : MonoBehaviour
     {
         currentThrottle = Mathf.Lerp(currentThrottle, throttleInput, throttleSharpness * Time.fixedDeltaTime);
         currentSteer = Mathf.Lerp(currentSteer, steerInput, steerSharpness * Time.fixedDeltaTime);
+        currentBrake = Mathf.Lerp(currentBrake, brakeInput, brakeSharpness * Time.fixedDeltaTime);
 
         Vector3 localVelocity = transform.InverseTransformDirection(rb.linearVelocity);
         ForwardSpeed = localVelocity.z;
@@ -109,18 +145,20 @@ public class CarController : MonoBehaviour
         }
         else if (currentThrottle < 0f)
         {
-            if (localVelocity.z > 1f)
-            {
-                localVelocity.z -= brakeForce * Mathf.Abs(currentThrottle) * Time.fixedDeltaTime;
-            }
-            else if (localVelocity.z > -maxReverseSpeed)
+            if (localVelocity.z > -maxReverseSpeed)
             {
                 float reverseRatio = Mathf.Clamp01(Mathf.Abs(localVelocity.z) / maxReverseSpeed);
                 float reverseFactor = Mathf.Lerp(1f, 0.25f, reverseRatio * reverseRatio);
                 localVelocity.z -= reverseAcceleration * Mathf.Abs(currentThrottle) * reverseFactor * Time.fixedDeltaTime;
             }
         }
-        else
+
+        if (currentBrake > 0f && localVelocity.z > 0f)
+        {
+            localVelocity.z -= brakeForce * currentBrake * Time.fixedDeltaTime;
+        }
+
+        if (Mathf.Abs(currentThrottle) < 0.01f && currentBrake < 0.01f)
         {
             localVelocity.z = Mathf.Lerp(localVelocity.z, 0f, coastDrag * Time.fixedDeltaTime);
         }
@@ -158,6 +196,14 @@ public class CarController : MonoBehaviour
 
         frontLeftWheel.localRotation = Quaternion.Euler(frontLeftWheel.localEulerAngles.x + rotationAmount, steerVisual, 0f);
         frontRightWheel.localRotation = Quaternion.Euler(frontRightWheel.localEulerAngles.x + rotationAmount, steerVisual, 0f);
+    }
+
+    public void SetInputs(float throttle, float steer, float brake, bool handbrake)
+    {
+        throttleInput = Mathf.Clamp(throttle, -1f, 1f);
+        steerInput = Mathf.Clamp(steer, -1f, 1f);
+        brakeInput = Mathf.Clamp01(brake);
+        handbrakeInput = handbrake;
     }
 
     public void SetWheelVisuals(Transform fl, Transform fr, Transform rl, Transform rr)
