@@ -25,7 +25,6 @@ The aim of this project is to create a playable arcade racing game with a clear 
 
 - Unity
 - C#
-- TextMeshPro
 
 ## Current Game Flow
 
